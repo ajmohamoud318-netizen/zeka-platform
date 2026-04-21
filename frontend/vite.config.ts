@@ -5,6 +5,11 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  build: {
+    // On Vercel, static files must live in repo-root `public/` (see vercel.json outputDirectory).
+    outDir: process.env.VERCEL ? "../public" : "dist",
+    emptyOutDir: true,
+  },
   server: {
     port: 5173,
     proxy: {

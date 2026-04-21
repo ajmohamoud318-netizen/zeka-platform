@@ -16,7 +16,15 @@ function buildWebhookRequest(req: ExpressRequest): globalThis.Request {
       headers.set(key, value);
     }
   }
-  const url = `http://localhost${req.originalUrl}`;
+  const proto =
+    (typeof req.headers["x-forwarded-proto"] === "string"
+      ? req.headers["x-forwarded-proto"].split(",")[0]?.trim()
+      : undefined) ?? req.protocol;
+  const host =
+    (typeof req.headers["x-forwarded-host"] === "string"
+      ? req.headers["x-forwarded-host"].split(",")[0]?.trim()
+      : undefined) ?? req.get("host") ?? "localhost";
+  const url = `${proto}://${host}${req.originalUrl}`;
   return new Request(url, {
     method: req.method,
     headers,
