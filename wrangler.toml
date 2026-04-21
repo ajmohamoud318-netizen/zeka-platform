@@ -1,0 +1,12 @@
+# Cloudflare Pages — connect this repo in the dashboard, then set:
+#   Framework preset: None
+#   Build command:    npm install && npm run build -w frontend
+#   Build output:     frontend/dist
+#   Root directory:   / (repository root)
+#
+# Environment variables (Settings → Environment variables):
+#   VITE_CLERK_PUBLISHABLE_KEY
+#   VITE_API_URL  → full URL of your Express API (Pages cannot run this backend; host it on Railway, Fly, Render, etc.)
+
+name = "zeka-platform"
+compatibility_date = "2025-04-21"
